@@ -1,17 +1,17 @@
-var express = require('express');
-var request = require('superagent');
+const express = require('express')
+const request = require('superagent')
 
-var app = express();
+const app = express()
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/public/views/');
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/public/views/')
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 
-var NON_INTERACTIVE_CLIENT_ID = 'Gwtl07SofXeC2spTj5wOZ0dyE66BXTUB'
-var NON_INTERACTIVE_CLIENT_SECRET = '0uorO3TvZaMmm1mQsN96BQOR0q-JItDwUoRRJOY75BmOxdSvxG6p4qXdIgjggEX6'
+const NON_INTERACTIVE_CLIENT_ID = 'Gwtl07SofXeC2spTj5wOZ0dyE66BXTUB'
+const NON_INTERACTIVE_CLIENT_SECRET = '0uorO3TvZaMmm1mQsN96BQOR0q-JItDwUoRRJOY75BmOxdSvxG6p4qXdIgjggEX6'
 
-var authData = {
+const authData = {
   client_id: NON_INTERACTIVE_CLIENT_ID,
   client_secret: NON_INTERACTIVE_CLIENT_SECRET,
   grant_type: 'client_credentials',
@@ -26,12 +26,12 @@ function getAccessToken(req, res, next){
     .send(authData)
     .end(function(err, res) {
       req.access_token = res.body.access_token
-      next();
+      next()
     })
 }
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('index')
 })
 
 app.get('/movies', getAccessToken, function(req, res){
@@ -39,12 +39,12 @@ app.get('/movies', getAccessToken, function(req, res){
     .get('http://localhost:8080/movies')
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function(err, data) {
-      console.log(data);
+      console.log(data)
       if(data.status == 403){
-        res.send(403, '403 Forbidden');
+        res.send(403, '403 Forbidden')
       } else {
-        var movies = data.body;
-        res.render('movies', { movies: movies} );
+        var movies = data.body
+        res.render('movies', { movies: movies} )
       }
     })
 })
@@ -55,10 +55,10 @@ app.get('/authors', getAccessToken, function(req, res){
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function(err, data) {
       if(data.status == 403){
-        res.send(403, '403 Forbidden');
+        res.send(403, '403 Forbidden')
       } else {
-        var authors = data.body;
-        res.render('authors', {authors : authors});
+        var authors = data.body
+        res.render('authors', {authors : authors})
       }
     })
 })
@@ -69,10 +69,10 @@ app.get('/publications', getAccessToken, function(req, res){
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function(err, data) {
       if(data.status == 403){
-        res.send(403, '403 Forbidden');
+        res.send(403, '403 Forbidden')
       } else {
-        var publications = data.body;
-        res.render('publications', {publications : publications});
+        var publications = data.body
+        res.render('publications', {publications : publications})
       }
     })
 })
@@ -83,12 +83,12 @@ app.get('/pending', getAccessToken, function(req, res){
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function(err, data) {
       if(data.status == 403){
-        res.send(403, '403 Forbidden');
+        res.send(403, '403 Forbidden')
       } else {
-        var movies = data.body;
-        res.render('pending', {movies : movies});
+        var movies = data.body
+        res.render('pending', {movies : movies})
       }
     })
 })
 
-app.listen(3000);
+app.listen(3000)

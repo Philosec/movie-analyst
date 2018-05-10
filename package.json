@@ -1,0 +1,32 @@
+{
+  "name": "movie-analyst",
+  "version": "0.0.1",
+  "description": "Movie Analyst aggregates and displays a list of the latest movie reviews by famous critics across the web.",
+  "main": "index.js",
+  "scripts": {
+    "api": "nodemon ./movieanalyst-api/server.js",
+    "website": "nodemon ./movieanalyst-website/server.js",
+    "admin": "nodemon ./movieanalyst-admin/server.js",
+    "start": "concurrently --kill-others \"npm run api\" \"npm run website\" \"npm run admin\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Philosec/movie-analyst.git"
+  },
+  "author": "Shane Padgett",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Philosec/movie-analyst/issues"
+  },
+  "homepage": "https://github.com/Philosec/movie-analyst#readme",
+  "dependencies": {
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "superagent": "^1.8.4",
+    "auth0-api-jwt-rsa-validation": "0.0.1",
+    "express-jwt": "^3.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
