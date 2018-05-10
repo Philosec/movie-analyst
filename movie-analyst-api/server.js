@@ -5,5 +5,8 @@ const app = express()
 const jwt = require('express-jwt')
 const rsaValidation = require('auth0-api-jwt-rsa-validation')
 
-// Implement movies api endpoint
+// API endpoints
 //========================================
+require('./app/routes/api-routes')(app)
+
+app.listen(3000)
