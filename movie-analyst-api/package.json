@@ -1,5 +1,5 @@
 {
-  "name": "movie-analyst",
+  "name": "movie-analyst-api",
   "version": "0.0.1",
   "description": "Aggregates and displays a list of the latest movie reviews by famous critics across the web",
   "main": "index.js",
