@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Philosec/movie-analyst/issues"
   },
-  "homepage": "https://github.com/Philosec/movie-analyst#readme"
+  "homepage": "https://github.com/Philosec/movie-analyst#readme",
+  "dependencies": {
+    "auth0-api-jwt-rsa-validation": "0.0.1",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1"
+  }
 }
